@@ -15,7 +15,7 @@ func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconected")
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
-	
+	rpc_config("instance_puppet",MultiplayerAPI.RPC_MODE_REMOTE)
 	device_ip_adress.text = Network.ip_adress
 
 
