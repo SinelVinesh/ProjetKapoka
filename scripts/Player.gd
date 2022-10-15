@@ -7,6 +7,7 @@ func _ready():
 	
 func _physics_process(delta):
 	pass
+	
 func get_velocity(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_down"):
