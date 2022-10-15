@@ -87,24 +87,36 @@ func _on_kapoka_reached(body: Node):
 	
 # called when a hider hit the kapoka
 func _on_kapoka_hit():
-	# add 1 to hider points
-	# start next round
+	win_round("hidden")
 	pass
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
 	# freeze every mouvement
+	toogle_player_process(false)
 	# give the seeker an amount of time to choose the correct pseudo
-	pass
+	# the time is bound to the seeker, he will get a malus if the timer times out
+	$SeekerGuessTimer.start()
+	
+func toogle_player_process(state: bool):
+	for seeker in $Seekers.get_children():
+		seeker.set_process(state)
+	for hidden in $Hidden.get_children():
+		hidden.set_process(state)
 	
 # called when a seeker make a guess
-func _on_seeker_guess():
+func _on_seeker_guess(true_ids,guess_ids):
 	# check seeker's guess
-	# if correct : 
-		# put the hider in jail
-	# if incorrect :
-		# add 1 to hier points
-		# start next round
+	for i in len(true_ids) :
+		if true_ids[i] != guess_ids[i] :
+			win_round("seeker")
+			pass
+	for hider in $Hidden.get_children():
+		if hider.getId() in true_ids :
+			put_in_jail(hider)
+	pass
+
+func put_in_jail(hider):
 	pass
 
 # called when a hider touch a seeker
@@ -114,8 +126,12 @@ func _on_seeker_touched():
 	
 # called when the timer is out
 func _on_count_down_ends():
-	# add 1 to hider points
-	# start next round
-	pass
+	win_round("hidden")
 	
+	
+func win_round(group: String):
+	score[group] = score[group] + 1
+	reset_game()
 
+func reset_game():
+	pass
