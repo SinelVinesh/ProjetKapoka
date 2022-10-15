@@ -1,7 +1,6 @@
 extends Node2D
 
 export var score := {"seeker":0,"hidden":0}
-var player_scene
 var seeker_list = []
 var hidden_list = []
 const seeker_spawn = Vector2(30,250)
@@ -9,11 +8,14 @@ var init_distance
 var camera_lock = false
 var started = false
 
+onready var seeker_scene = preload("res://scenes/Seeker.tscn")
+onready var hider_scene = preload("res://scenes/Hider.tscn")
+onready var player_scene = preload("res://scenes/PlayerVinesh.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	update_score()
-	player_scene = preload("res://scenes/Player.tscn")
 	start_game()
 	
 
@@ -28,32 +30,28 @@ func _on_GameTimer_count_down(count):
 	$HUD/TimerLabel.text =  text
 
 func start_game():
-	spawnSeekers()
-	spawnHidden()
 	spawnKapoka()
 
-func spawnSeekers():
-	var seeker = player_scene.instance() as Player
+func spawnSeeker(id):
+	var seeker = seeker_scene.instance() as Seeker
+	seeker.name = str(id)
+	seeker.set_network_master(id)
 	var cam = Camera2D.new()
 	seeker_list.append(seeker)
 	$Seekers.add_child(seeker)
-	seeker.get_node("ColorRect").color = Color.dodgerblue
 	seeker.position = seeker_spawn
 	seeker.add_to_group("seeker")
 	init_distance = seeker.position.distance_to($KapokaSpawn.position)
-	pass
 	
-func spawnHidden():
-	var hidden_count = 3
-	for i in range(0,hidden_count):
-		$Path2D/PathFollow2D.unit_offset = randf()
-		var hidden = player_scene.instance() as Player
-		hidden_list.append(hidden)
-		hidden.get_node("ColorRect").color = Color.red
-		hidden.position = $Path2D/PathFollow2D.position
-		print("path : " + str($Path2D/PathFollow2D.position) + "; Hidden : "+ str(hidden.position))
-		$Hidden.add_child(hidden)
-		hidden.set_process(false)
+func spawnHidden(id):
+	$Path2D/PathFollow2D.unit_offset = randf()
+	var hidden = hider_scene.instance() as Hider
+	hidden.name = str(id)
+	hidden.set_network_master(id)
+	hidden_list.append(hidden)
+	hidden.position = $Path2D/PathFollow2D.position
+	$Hidden.add_child(hidden)
+	hidden.set_process(false)
 	pass
 	
 func spawnKapoka():
@@ -68,7 +66,9 @@ func _process(delta):
 	handleCamera(delta)
 
 func handleCamera(delta):
-	var seeker = seeker_list[0] as Player
+	if(len(seeker_list) == 0) :
+		return
+	var seeker = seeker_list[0] as Seeker
 	var distance = seeker.position.distance_to($KapokaSpawn.position)
 	var zoom = clamp(distance/ init_distance,0.3,1)
 	if(!camera_lock) :

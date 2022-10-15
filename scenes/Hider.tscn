@@ -13,8 +13,8 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=2]
 
-[node name="Hider" type="KinematicBody2D"]
-position = Vector2( 20, 6 )
+[node name="HiderSteven" type="KinematicBody2D" groups=["Hider"]]
+position = Vector2( 200, 171 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

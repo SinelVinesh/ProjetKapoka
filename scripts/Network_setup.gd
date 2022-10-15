@@ -5,6 +5,10 @@ var player = load("res://scenes/Player.tscn");
 onready var multi_config_ui = $Multiplayer_configure
 onready var server_ip_adress = $Multiplayer_configure/Server_ip_adress
 onready var device_ip_adress = $CanvasLayer/Device_ip_adress
+onready var seeker_scene = preload("res://scenes/Seeker.tscn")
+onready var hider_scene = preload("res://scenes/Hider.tscn")
+
+signal spawn_seeker(id)
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -29,7 +33,7 @@ func _on_Create_server_pressed():
 	multi_config_ui.hide()
 	Network.create_server()
 	
-	instance_player(get_tree().get_network_unique_id())
+	instance_seeker(get_tree().get_network_unique_id())
 
 
 func _on_Join_server_pressed():
@@ -42,7 +46,7 @@ func _on_Join_server_pressed():
 
 func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
-	instance_player(get_tree().get_network_unique_id())
+	instance_hider(get_tree().get_network_unique_id())
 
 
 func instance_player(id):
@@ -50,5 +54,10 @@ func instance_player(id):
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
 	player_instance.get_node("Camera2D").make_current()
-
+	
+func instance_seeker(id):
+	Admin.spawnSeeker(id)
+	
+func instance_hider(id):
+	Admin.spawnHider(id)
 

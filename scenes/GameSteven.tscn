@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/HiderSteven.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Hider.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Detection_hiderSteven.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/GameSteven.gd" type="Script" id=3]
-[ext_resource path="res://scenes/SeekerSteven.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Seeker.tscn" type="PackedScene" id=4]
+
 
 [node name="GameSteven" type="Node2D"]
 script = ExtResource( 3 )
