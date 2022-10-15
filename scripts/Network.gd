@@ -34,7 +34,7 @@ func join_server():
 	client.create_client(ip_adress, DEFAULT_PORT)
 	get_tree().set_network_peer(client)
 	
-func connected_to_server():
+func _connected_to_server():
 	print("Successfully connected to the server")
 
 func _server_disconnected():
