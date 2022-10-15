@@ -26,7 +26,7 @@ func _physics_process(delta):
 	
 func get_velocity(delta):
 	var x_input = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
-	var y_input = int(Input.is_action_pressed("move_up")) - int(Input.is_action_pressed("move_down"))
+	var y_input = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	
 	velocity = Vector2(x_input, y_input).normalized() * speed
 	
