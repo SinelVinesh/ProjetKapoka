@@ -5,7 +5,8 @@ var hitkpoka = false
 signal idHiderHit(idHit)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if is_network_master():
+		$Camera.make_current()
 
 func _process(delta):
 	hitKpoka()

@@ -49,8 +49,6 @@ func spawnHider(id):
 	var hidden = hider_scene.instance()
 	hidden.name = str(id)
 	hidden.set_network_master(id)
-	if is_network_master():
-		hidden.get_node("Camera").make_current()
 	hidden_list.append(hidden)
 	hidden.position = $Path2D/PathFollow2D.position
 	$Hidden.add_child(hidden)
