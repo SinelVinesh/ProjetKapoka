@@ -1,4 +1,4 @@
-extends "res://scripts/PlayerSteven.gd"
+extends Player
 class_name Seeker
 
 var kasyKpoka = false

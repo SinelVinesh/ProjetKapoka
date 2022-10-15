@@ -1,4 +1,4 @@
-extends "res://scripts/PlayerSteven.gd"
+extends Player
 class_name Hider
 
 var hitkpoka = false
