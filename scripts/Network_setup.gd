@@ -31,8 +31,10 @@ func instance_puppet(group):
 	
 func _player_disconected(id):
 	print(str(id) + " disconnected")
-	if Players.has_node(str(id)):
-		Players.get_node(str(id)).queue_free()
+	if Admin.has_node("Seekers/"+str(id)) :
+		Admin.get_node("Seekers/"+str(id)).queue_free()
+	elif Admin.has_node("Hidden/"+str(id)) :
+		Admin.get_node("Hidden/"+str(id)).queue_free()
 
 
 func _on_Create_server_pressed():

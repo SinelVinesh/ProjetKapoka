@@ -46,6 +46,7 @@ func spawnSeeker(id):
 func spawnHider(id):
 	$Path2D/PathFollow2D.unit_offset = randf()
 	var hidden = hider_scene.instance()
+	hidden.get_node("Camera").make_current()
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)

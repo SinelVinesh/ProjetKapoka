@@ -13,7 +13,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=2]
 
-[node name="HiderSteven" type="KinematicBody2D" groups=["Hider"]]
+[node name="Hider" type="KinematicBody2D" groups=["Hider"]]
 position = Vector2( 1, 2 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -33,5 +33,8 @@ shape = SubResource( 2 )
 [node name="Network_tick_rate" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2( 0.3, 0.3 )
 
 [connection signal="timeout" from="Network_tick_rate" to="." method="_on_Network_tick_rate_timeout"]
