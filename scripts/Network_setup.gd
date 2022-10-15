@@ -48,12 +48,6 @@ func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
 	instance_hider(get_tree().get_network_unique_id())
 
-
-func instance_player(id):
-	var player_instance = Global.instance_node_at(player, Players, Vector2(rand_range(0,1024), rand_range(0, 600)))
-	player_instance.name = str(id)
-	player_instance.set_network_master(id)
-	player_instance.get_node("Camera2D").make_current()
 	
 func instance_seeker(id):
 	Admin.spawnSeeker(id)
