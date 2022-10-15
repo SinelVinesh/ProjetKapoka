@@ -17,6 +17,11 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
+"path": "res://scripts/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerVinesh",
+"language": "GDScript",
 "path": "res://scripts/PlayerVinesh.gd"
 }, {
 "base": "Player",
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Hider": "",
 "Player": "",
+"PlayerVinesh": "",
 "Seeker": ""
 }
 

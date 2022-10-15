@@ -14,13 +14,15 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=2]
 
 [node name="HiderSteven" type="KinematicBody2D" groups=["Hider"]]
-position = Vector2( 200, 171 )
+position = Vector2( 1, 2 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.5, 0.5 )
+scale = Vector2( 0.328125, 0.609375 )
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
