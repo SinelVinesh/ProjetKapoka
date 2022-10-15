@@ -8,7 +8,7 @@ func instance_node_at (node: Object, parent: Object, location: Vector2):
 
 func instance_node(node: Object, parent: Object):
 	var node_instance = node.instance()
-	parent.add_child(node)
+	parent.add_child(node_instance)
 	return node_instance
 	
 	
