@@ -19,7 +19,7 @@ func _physics_process(delta):
 		move(delta)
 	else:
 		rotation_degrees = lerp(rotation_degrees, puppet_rotation, delta * 8)
-		
+	
 		if not tween.is_active():
 			move_and_collide(puppet_velocity * speed)
 	
