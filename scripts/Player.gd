@@ -5,7 +5,7 @@ var speed = 200
 func _ready():
 	pass # Replace with function body.
 	
-func _process(delta):
+func _physics_process(delta):
 	move(delta)
 
 func move(delta):
@@ -19,13 +19,14 @@ func move(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 		
+	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
+	var col = move_and_collide(velocity * delta)
 	
-	position += velocity * delta
 	
 
 
