@@ -32,7 +32,6 @@ func get_velocity(delta):
 	
 	return velocity
 
-
 func analyse_col(col):
 	pass
 	
@@ -41,7 +40,8 @@ func move (delta):
 	var velocity = get_velocity(delta)
 	var col = move_and_collide(velocity * delta)
 	analyse_col(col)
-
+	look_at(get_global_mouse_position())
+	
 
 func puppet_position_set(new_value):
 	puppet_position = new_value
