@@ -5,6 +5,9 @@ var player_scene
 var seeker_list = []
 var hidden_list = []
 const seeker_spawn = Vector2(30,250)
+var init_distance
+var camera_lock = false
+var started = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +31,7 @@ func start_game():
 	spawnSeekers()
 	spawnHidden()
 	spawnKapoka()
-	
+
 func spawnSeekers():
 	var seeker = player_scene.instance() as Player
 	var cam = Camera2D.new()
@@ -36,6 +39,8 @@ func spawnSeekers():
 	$Seekers.add_child(seeker)
 	seeker.get_node("ColorRect").color = Color.dodgerblue
 	seeker.position = seeker_spawn
+	seeker.add_to_group("seeker")
+	init_distance = seeker.position.distance_to($KapokaSpawn.position)
 	pass
 	
 func spawnHidden():
@@ -44,9 +49,10 @@ func spawnHidden():
 		$Path2D/PathFollow2D.unit_offset = randf()
 		var hidden = player_scene.instance() as Player
 		hidden_list.append(hidden)
-		$Hidden.add_child(hidden)
 		hidden.get_node("ColorRect").color = Color.red
 		hidden.position = $Path2D/PathFollow2D.position
+		print("path : " + str($Path2D/PathFollow2D.position) + "; Hidden : "+ str(hidden.position))
+		$Hidden.add_child(hidden)
 		hidden.set_process(false)
 	pass
 	
@@ -54,21 +60,30 @@ func spawnKapoka():
 	var kapoka = player_scene.instance() as Player
 	kapoka.get_node("ColorRect").color = Color.yellow
 	kapoka.scale = Vector2(0.3,0.3)
-	kapoka.position = $Path2D/KapokaSpawn.position
+	kapoka.position = $KapokaSpawn.position
 	add_child(kapoka)
 	kapoka.set_process(false)
 
 func _process(delta):
-	handleCamera()
+	handleCamera(delta)
 
-func handleCamera():
+func handleCamera(delta):
 	var seeker = seeker_list[0] as Player
-	var distance = seeker.position.distance_to($Path2D/KapokaSpawn.position)
-	print(distance)
+	var distance = seeker.position.distance_to($KapokaSpawn.position)
+	var zoom = clamp(distance/ init_distance,0.3,1)
+	if(!camera_lock) :
+		$GameCamera.set_zoom(Vector2(zoom,zoom))
+	if(zoom == 0.3) :
+		camera_lock = true
+	if(camera_lock):
+		$GameCamera.position.x = seeker_list[0].position.x
+		$GameCamera.position.y = seeker_list[0].position.y 
 
 # called when the seekers reach the kapoka at the start of the game
-func _on_kapoka_reached():
-	$GameTimer.start()
+func _on_kapoka_reached(body: Node):
+	if(body.is_in_group("seeker") && !started) :
+		$GameTimer.start()
+		started = true
 	
 # called when a hider hit the kapoka
 func _on_kapoka_hit():
