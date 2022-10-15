@@ -137,4 +137,6 @@ scale = Vector2( 0.18568, 0.170015 )
 frames = SubResource( 20 )
 animation = "down"
 
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="body_entered" from="ChampVision" to="ChampVision" method="_on_ChampVision_body_entered"]

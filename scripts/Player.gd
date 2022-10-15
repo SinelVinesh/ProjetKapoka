@@ -4,15 +4,14 @@ class_name Player
 var speed = 200
 var velocity = Vector2.ZERO
 
-onready var tween = $Tween
+var tween
 
 puppet var puppet_position = Vector2.ZERO setget puppet_position_set
 puppet var puppet_velocity = Vector2()
 
-
 func _ready():
-	pass # Replace with function body.
-
+	if tween == null :
+		tween = $Tween
 
 func _physics_process(delta):
 	if is_network_master():

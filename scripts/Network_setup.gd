@@ -46,7 +46,6 @@ func _on_Join_server_pressed():
 func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
 	instance_hider(get_tree().get_network_unique_id())
-
 	
 func instance_seeker(id):
 	Admin.spawnSeeker(id)

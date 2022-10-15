@@ -33,7 +33,7 @@ func start_game():
 	spawnKapoka()
 
 func spawnSeeker(id):
-	var seeker = seeker_scene.instance() as Seeker
+	var seeker = seeker_scene.instance()
 	seeker.name = str(id)
 	seeker.set_network_master(id)
 	var cam = Camera2D.new()
@@ -45,7 +45,7 @@ func spawnSeeker(id):
 	
 func spawnHider(id):
 	$Path2D/PathFollow2D.unit_offset = randf()
-	var hidden = hider_scene.instance() as Hider
+	var hidden = hider_scene.instance()
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)
@@ -68,7 +68,7 @@ func _process(delta):
 func handleCamera(delta):
 	if(len(seeker_list) == 0) :
 		return
-	var seeker = seeker_list[0] as Seeker
+	var seeker = seeker_list[0]
 	var distance = seeker.position.distance_to($KapokaSpawn.position)
 	var zoom = clamp(distance/ init_distance,0.3,1)
 	if(!camera_lock) :
