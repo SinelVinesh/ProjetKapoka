@@ -55,7 +55,7 @@ func spawnHider(id):
 	pass
 	
 func spawnKapoka():
-	var kapoka = player_scene.instance() as Player
+	var kapoka = player_scene.instance() as PlayerVinesh
 	kapoka.get_node("ColorRect").color = Color.yellow
 	kapoka.scale = Vector2(0.3,0.3)
 	kapoka.position = $KapokaSpawn.position

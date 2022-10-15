@@ -81,5 +81,4 @@ __meta__ = {
 }
 
 [connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]
-[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="body_entered" from="KapokaArea" to="." method="_on_kapoka_reached"]
