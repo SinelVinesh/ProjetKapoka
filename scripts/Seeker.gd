@@ -1,12 +1,9 @@
 extends "res://scripts/Player.gd"
 
 func _ready():
+	speed *= 1.2
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-func move(delta):
 	pass
