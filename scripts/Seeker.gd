@@ -35,3 +35,7 @@ func play_correct_animation() :
 	elif Input.is_action_pressed("move_up"):
 		$Sprite.play("up")
 
+
+
+func _on_Network_tick_rate_timeout():
+	._on_Network_tick_rate_timeout()

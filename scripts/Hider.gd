@@ -21,3 +21,7 @@ func hitKpoka():
 		if Input.is_action_just_pressed("kpoka"):
 			emit_signal("idHiderHit",name)
 	
+
+
+func _on_Network_tick_rate_timeout():
+	._on_Network_tick_rate_timeout()
