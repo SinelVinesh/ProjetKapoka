@@ -43,7 +43,7 @@ func spawnSeeker(id):
 	seeker.add_to_group("seeker")
 	init_distance = seeker.position.distance_to($KapokaSpawn.position)
 	
-func spawnHidden(id):
+func spawnHider(id):
 	$Path2D/PathFollow2D.unit_offset = randf()
 	var hidden = hider_scene.instance() as Hider
 	hidden.name = str(id)
