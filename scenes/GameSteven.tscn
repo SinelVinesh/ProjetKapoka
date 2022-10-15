@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/HiderSteven.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Detection_hiderSteven.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/GameSteven.gd" type="Script" id=3]
+[ext_resource path="res://scenes/SeekerSteven.tscn" type="PackedScene" id=4]
+
+[node name="GameSteven" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Hider" parent="." instance=ExtResource( 1 )]
+position = Vector2( 560, 365 )
+
+[node name="Detection_hider" parent="." instance=ExtResource( 2 )]
+position = Vector2( 532, 130 )
+
+[node name="Seeker" parent="." instance=ExtResource( 4 )]
+position = Vector2( 672, 373 )

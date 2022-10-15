@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/SeekerSteven.gd" type="Script" id=1]
+[ext_resource path="res://assets/dotpict/player.png" type="Texture" id=2]
+[ext_resource path="res://scenes/ChampVision.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.5, 29.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 75.5, 62.5 )
+
+[node name="SeekerSteven" type="KinematicBody2D" groups=["Seeker"]]
+position = Vector2( 670, 289 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -0.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.000244141, 2 )
+scale = Vector2( 0.176046, 0.170759 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 4
+
+[node name="ChampVision" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Zone" type="CollisionShape2D" parent="ChampVision"]
+position = Vector2( 0, -1 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="ChampVision" to="ChampVision" method="_on_ChampVision_body_entered"]
