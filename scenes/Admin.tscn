@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Admin.gd" type="Script" id=1]
+[ext_resource path="res://scripts/GameTimer.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 576, 192, 0, -68.974, 0, 68.974, 640, 256, 0, 0, 0, 0, 576, 320, 0, 60.6496, 0, -60.6496, 512, 256, 0, 0, 0, 0, 576, 192 )
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 40.7922
+
+[node name="Admin" type="Node2D"]
+script = ExtResource( 1 )
+score = null
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 34.0
+
+[node name="SeekerScore" type="Label" parent="HUD"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 60.0
+margin_bottom = 34.0
+
+[node name="HiddenScore" type="Label" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -65.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = 34.0
+grow_horizontal = 0
+align = 2
+
+[node name="Seekers" type="Node2D" parent="."]
+
+[node name="Hidden" type="Node2D" parent="."]
+
+[node name="GameTimer" type="Timer" parent="."]
+script = ExtResource( 2 )
+
+[node name="SeekerGuessTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -32, 76.1579 )
+scale = Vector2( 0.9375, 0.874538 )
+curve = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 576, 192 )
+rotation = -0.0144416
+
+[node name="GameCamera" type="Camera2D" parent="."]
+position = Vector2( 516, 300 )
+current = true
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="KapokaArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="KapokaArea"]
+position = Vector2( 512, 300 )
+shape = SubResource( 2 )
+
+[node name="KapokaSpawn" type="Position2D" parent="."]
+position = Vector2( 512, 300 )
+__meta__ = {
+"_gizmo_extents_": 26.8
+}
+
+[connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
+[connection signal="body_entered" from="KapokaArea" to="." method="_on_kapoka_reached"]
