@@ -20,7 +20,6 @@ func _ready():
 
 func _player_connected(id):
 	print(str(id) + " connected")
-	instance_player(id)
 	
 	
 func _player_disconected(id):
