@@ -6,7 +6,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
-	pass
+	move(delta)
 	
 func get_velocity(delta):
 	var velocity = Vector2.ZERO
@@ -19,16 +19,22 @@ func get_velocity(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 		
-	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
 	return velocity
-	
-	
 
+func analyse_col(col):
+	pass
+	
+func move (delta):
+	var velocity = get_velocity(delta)
+	var col = move_and_collide(velocity * delta)
+	analyse_col(col)
+
+	
 	
 
 
