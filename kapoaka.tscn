@@ -67,11 +67,5 @@ shape = SubResource( 1 )
 anims/RESET = SubResource( 4 )
 anims/tomber = SubResource( 3 )
 
-[node name="Button" type="Button" parent="."]
-margin_left = -53.0
-margin_top = 107.0
-margin_right = -41.0
-margin_bottom = 127.0
-
 [connection signal="body_entered" from="cercle" to="." method="_on_cercle_body_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="child_entered_tree" from="collision_self" to="." method="_on_collision_self_child_entered_tree"]

@@ -20,6 +20,6 @@ func _on_cercle_body_entered(body):
 	pass
 
 
-func _on_Button_pressed():
-	$animation.play("tomber")
-	pass
+func _on_collision_self_child_entered_tree(node):
+	emit_signal("voadaka")
+	pass # Replace with function body.
