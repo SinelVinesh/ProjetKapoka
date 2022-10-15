@@ -40,7 +40,7 @@ func _on_Join_server_pressed():
 		Network.ip_adress = ip
 		Network.join_server()
 
-		
+
 
 func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -52,4 +52,4 @@ func instance_player(id):
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
 	
-	
+
