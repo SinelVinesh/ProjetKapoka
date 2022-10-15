@@ -6,7 +6,6 @@ onready var multi_config_ui = $Multiplayer_configure
 onready var server_ip_adress = $Multiplayer_configure/Server_ip_adress
 onready var device_ip_adress = $CanvasLayer/Device_ip_adress
 
-
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconected")
@@ -41,7 +40,6 @@ func _on_Join_server_pressed():
 		Network.join_server()
 
 
-
 func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
 	instance_player(get_tree().get_network_unique_id())
@@ -51,5 +49,6 @@ func instance_player(id):
 	var player_instance = Global.instance_node_at(player, Players, Vector2(rand_range(0,1024), rand_range(0, 600)))
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
-	
+	player_instance.get_node("Camera2D").make_current()
+
 

@@ -43,7 +43,7 @@ func puppet_position_set(new_value):
 	puppet_position = new_value
 	tween.interpolate_property(self, "global_position", global_position, puppet_position, 0.1)
 	tween.start()
-		
+
 
 func _on_Network_tick_rate_timeout():
 	if is_network_master():
