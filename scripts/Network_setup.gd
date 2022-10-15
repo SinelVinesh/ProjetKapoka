@@ -39,7 +39,7 @@ func _on_Join_server_pressed():
 		multi_config_ui.hide()
 		Network.ip_adress = ip
 		Network.join_server()
-		
+		instance_player(get_tree().get_network_unique_id())
 		
 
 func _connected_server():
