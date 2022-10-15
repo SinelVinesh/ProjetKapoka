@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cercle.png-0e7532c339742c4309886a504eac9c3b.stex"
+path="res://.import/cercle.png-3b9a90bff91caf2088eac054ce268c5f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/cercle.png"
-dest_files=[ "res://.import/cercle.png-0e7532c339742c4309886a504eac9c3b.stex" ]
+source_file="res://assets/dotpict/cercle.png"
+dest_files=[ "res://.import/cercle.png-3b9a90bff91caf2088eac054ce268c5f.stex" ]
 
 [params]
 

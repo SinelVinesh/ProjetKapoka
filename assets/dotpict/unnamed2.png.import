@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/unnamed2.png-76fc0ebff1876787370280ede76b8932.stex"
+path="res://.import/unnamed2.png-37ee2d33c6e653a1e52a0d48ac653863.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/unnamed2.png"
-dest_files=[ "res://.import/unnamed2.png-76fc0ebff1876787370280ede76b8932.stex" ]
+source_file="res://assets/dotpict/unnamed2.png"
+dest_files=[ "res://.import/unnamed2.png-37ee2d33c6e653a1e52a0d48ac653863.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Basic Charakter Spritesheet.png-0e1a11be758dd7946136cefaf12c7274.stex"
+path="res://.import/dotpict_20221015_050957.png-f8e0d973696ebde712ae48224fcf7cc2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/Basic Charakter Spritesheet.png"
-dest_files=[ "res://.import/Basic Charakter Spritesheet.png-0e1a11be758dd7946136cefaf12c7274.stex" ]
+source_file="res://assets/dotpict/dotpict_20221015_050957.png"
+dest_files=[ "res://.import/dotpict_20221015_050957.png-f8e0d973696ebde712ae48224fcf7cc2.stex" ]
 
 [params]
 

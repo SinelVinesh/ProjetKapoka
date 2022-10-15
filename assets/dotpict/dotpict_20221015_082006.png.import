@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/a.png-216abccef1021d9bcba98772a178b2d9.stex"
+path="res://.import/dotpict_20221015_082006.png-115099d591d63cbe05bbcad3a72b09c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/a.png"
-dest_files=[ "res://.import/a.png-216abccef1021d9bcba98772a178b2d9.stex" ]
+source_file="res://assets/dotpict/dotpict_20221015_082006.png"
+dest_files=[ "res://.import/dotpict_20221015_082006.png-115099d591d63cbe05bbcad3a72b09c0.stex" ]
 
 [params]
 
