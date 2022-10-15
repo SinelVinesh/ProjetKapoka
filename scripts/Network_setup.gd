@@ -1,6 +1,7 @@
 extends Control
 
 var player = load("res://scenes/Player.tscn");
+var my_group = ""
 
 onready var multi_config_ui = $Multiplayer_configure
 onready var server_ip_adress = $Multiplayer_configure/Server_ip_adress
@@ -20,7 +21,13 @@ func _ready():
 
 func _player_connected(id):
 	print(str(id) + " connected")
-	
+	rpc_id(id,"instance_puppet",my_group)
+
+func instance_puppet(group):
+	if group == "seeker":
+		instance_seeker(get_tree().get_rpc_sender_id())
+	else :
+		instance_hider(get_tree().get_rpc_sender_id())
 	
 func _player_disconected(id):
 	print(str(id) + " disconnected")
@@ -33,6 +40,7 @@ func _on_Create_server_pressed():
 	Network.create_server()
 	
 	instance_seeker(get_tree().get_network_unique_id())
+	my_group = "seeker"
 
 
 func _on_Join_server_pressed():
@@ -46,6 +54,8 @@ func _on_Join_server_pressed():
 func _connected_to_server():
 	yield(get_tree().create_timer(0.1), "timeout")
 	instance_hider(get_tree().get_network_unique_id())
+	my_group = "hider"
+	
 	
 func instance_seeker(id):
 	Admin.spawnSeeker(id)
