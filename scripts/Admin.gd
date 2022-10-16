@@ -98,12 +98,7 @@ func _on_kapoaka_exited(node):
 # called when a hider hit the kapoka
 func _on_kapoaka_hit(name):
 	win_round("hider")
-	for seeker in $Seekers.get_children() :
-		if seeker.name != str(get_network_master()) :
-			rpc_id(int(seeker.name),"win_round","hider")
-	for hider in $Hidden.get_children() :
-		if hider.name != str(get_network_master()) :
-			rpc_id(int(hider.name),"win_round","hider")
+	rpc("win_round","hider")
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
@@ -152,7 +147,7 @@ remotesync func win_round(group: String):
 func reset_game():
 	pass
 	
-func win_game(group: String):
+remotesync func win_game(group: String):
 	if group == "seeker" :
 		$HUD/VictoryPanel/VictoryText.text = "Victoire du boka"
 	else :
