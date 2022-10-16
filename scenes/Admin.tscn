@@ -1,15 +1,39 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Admin.gd" type="Script" id=1]
 [ext_resource path="res://scripts/GameTimer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Kapoaka.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/font/ARCADE.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.4992, 0.78, 0.73788, 1 )
+skew = Vector2( 0.2, 0 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.368627, 0.596078, 0.560784, 1 )
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color( 0.2108, 0.34, 0.2754, 1 )
+shadow_size = 5
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+anti_aliasing_size = 1.398
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+font_data = ExtResource( 4 )
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 576, 192, 0, -68.974, 0, 68.974, 640, 256, 0, 0, 0, 0, 576, 320, 0, 60.6496, 0, -60.6496, 512, 256, 0, 0, 0, 0, 576, 192 )
 }
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 40.7922
 
 [node name="Admin" type="Node2D"]
 script = ExtResource( 1 )
@@ -40,6 +64,35 @@ margin_bottom = 34.0
 grow_horizontal = 0
 align = 2
 
+[node name="VictoryPanel" type="Panel" parent="HUD"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -279.0
+margin_top = 26.0
+margin_right = 281.0
+margin_bottom = 99.0
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+
+[node name="VictoryText" type="Label" parent="HUD/VictoryPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+text = "Victoire du boka"
+align = 1
+valign = 1
+
+[node name="Kapoaka" parent="." instance=ExtResource( 3 )]
+
 [node name="Seekers" type="Node2D" parent="."]
 
 [node name="Hidden" type="Node2D" parent="."]
@@ -51,6 +104,7 @@ script = ExtResource( 2 )
 wait_time = 10.0
 
 [node name="Path2D" type="Path2D" parent="."]
+visible = false
 position = Vector2( -32, 76.1579 )
 scale = Vector2( 0.9375, 0.874538 )
 curve = SubResource( 1 )
@@ -68,12 +122,6 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 7.0
 
-[node name="KapokaArea" type="Area2D" parent="."]
-
-[node name="Collision" type="CollisionShape2D" parent="KapokaArea"]
-position = Vector2( 512, 300 )
-shape = SubResource( 2 )
-
 [node name="KapokaSpawn" type="Position2D" parent="."]
 position = Vector2( 512, 300 )
 __meta__ = {
@@ -81,4 +129,3 @@ __meta__ = {
 }
 
 [connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]
-[connection signal="body_entered" from="KapokaArea" to="." method="_on_kapoka_reached"]

@@ -2,7 +2,7 @@ extends Player
 class_name Hider
 
 var hitkpoka = false
-signal idHiderHit(idHit)
+signal kapoka_hit(idHit)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_network_master():
@@ -11,7 +11,7 @@ func _ready():
 func _process(delta):
 	hitKpoka()
 	
-func canhit(can):
+func set_hit(can):
 	hitkpoka = can
 
 func getHitKpoka():
@@ -19,8 +19,8 @@ func getHitKpoka():
 
 func hitKpoka():
 	if (hitkpoka):
-		if Input.is_action_just_pressed("kpoka"):
-			emit_signal("idHiderHit",name)
+		if Input.is_action_just_pressed("action_button") && is_network_master():
+			emit_signal("kapoka_hit",name)
 	
 
 

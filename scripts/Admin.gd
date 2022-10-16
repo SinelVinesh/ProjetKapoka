@@ -7,16 +7,19 @@ const seeker_spawn = Vector2(30,250)
 var init_distance
 var camera_lock = false
 var started = false
+var kapoaka;
 
 onready var seeker_scene = preload("res://scenes/Seeker.tscn")
 onready var hider_scene = preload("res://scenes/Hider.tscn")
-onready var player_scene = preload("res://scenes/PlayerVinesh.tscn")
+onready var kapoaka_scene = preload("res://scenes/Kapoaka.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Kapoaka.connect("entered_cercle",self,"_on_kapoaka_reached")
+	$Kapoaka.connect("exited_cercle",self,"_on_kapoaka_exited")
 	randomize()
 	update_score()
-	start_game()
+	spawnKapoka()
 	
 
 func update_score():
@@ -28,9 +31,6 @@ func _on_GameTimer_count_down(count):
 	var secondes = count%60
 	var text = "%d : %0-2d" % [minutes,secondes]
 	$HUD/TimerLabel.text =  text
-
-func start_game():
-	spawnKapoka()
 
 func spawnSeeker(id):
 	var seeker = seeker_scene.instance()
@@ -45,23 +45,18 @@ func spawnSeeker(id):
 	init_distance = seeker.position.distance_to($KapokaSpawn.position)
 	
 func spawnHider(id):
-	$Path2D/PathFollow2D.unit_offset = randf()
+	var follow = kapoaka.get_node("SpawnPath/SpawnFollow")
+	follow.unit_offset = randf()
 	var hidden = hider_scene.instance()
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)
-	hidden.position = $Path2D/PathFollow2D.position
+	hidden.position = follow.position
 	$Hidden.add_child(hidden)
-	hidden.set_process(false)
-	pass
+	hidden.connect("kapoka_hit",self,"_on_kapoaka_hit")
 	
 func spawnKapoka():
-	var kapoka = player_scene.instance() as PlayerVinesh
-	kapoka.get_node("ColorRect").color = Color.yellow
-	kapoka.scale = Vector2(0.3,0.3)
-	kapoka.position = $KapokaSpawn.position
-	add_child(kapoka)
-	kapoka.set_process(false)
+	$Kapoaka.set_position($KapokaSpawn.position)
 
 func _process(delta):
 	handleCamera(delta)
@@ -81,15 +76,25 @@ func handleCamera(delta):
 		$GameCamera.position.y = seeker_list[0].position.y 
 
 # called when the seekers reach the kapoka at the start of the game
-func _on_kapoka_reached(body: Node):
-	if(body.is_in_group("seeker") && !started) :
+func _on_kapoaka_reached(node):
+	if(node.is_in_group("seeker") && !started) :
 		$GameTimer.start()
 		started = true
+	if(node.is_in_group("seeker")) :
+		node.set_kasika(true)
+	if(node.is_in_group("hider")) :
+		node.set_hit(true)
 	
+func _on_kapoaka_exited(node):
+	if(node.is_in_group("seeker")) :
+		node.set_kasika(false)
+	if(node.is_in_group("hider")) :
+		node.set_hit(false)
+
 # called when a hider hit the kapoka
-func _on_kapoka_hit():
+func _on_kapoaka_hit():
 	win_round("hidden")
-	pass
+	$kapoaka.animate_voadaka()
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
@@ -129,10 +134,17 @@ func _on_seeker_touched():
 func _on_count_down_ends():
 	win_round("hidden")
 	
-	
 func win_round(group: String):
 	score[group] = score[group] + 1
-	reset_game()
+	win_game(group)
 
 func reset_game():
 	pass
+	
+func win_game(group: String):
+	if group == "seeker" :
+		$HUD/VictoryPanel/VictoryText.text = "Victoire du boka"
+	else :
+		$HUD/VictoryPanel/VictoryText.text = "Victoire des cachés"
+	$HUD/VictoryPanel.show()
+	get_tree().paused = true

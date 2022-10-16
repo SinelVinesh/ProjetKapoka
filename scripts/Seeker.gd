@@ -11,8 +11,8 @@ func _process(delta):
 	kasyKpoka()
 	play_correct_animation()
 	
-func canKasika(can):
-	kasyKpoka = can
+func set_kasika(state):
+	kasyKpoka = state
 	
 func getKasyKpoka():
 	return kasyKpoka
@@ -20,7 +20,7 @@ func getKasyKpoka():
 func kasyKpoka():
 	if (kasyKpoka):
 		$ChampVision.getIdTab()
-		if Input.is_action_just_pressed("kpoka"):
+		if Input.is_action_just_pressed("action_button") && is_network_master():
 			emit_signal("idTab",$ChampVision.getIdTab())
 			print($ChampVision.getIdTab())
 		
