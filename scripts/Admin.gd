@@ -98,9 +98,12 @@ func _on_kapoaka_exited(node):
 # called when a hider hit the kapoka
 func _on_kapoaka_hit(name):
 	win_round("hider")
-	for id in players :
-		if id != get_network_master() :
-			rpc_id(id,"win_round",name)
+	for seeker in $Seekers :
+		if seeker.name != get_network_master() :
+			rpc_id(seeker.name,"win_round",name)
+	for hider in $Hidden :
+		if hider.name != get_network_master() :
+			rpc_id(hider.name,"win_round",name)
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
