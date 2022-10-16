@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 class_name Kapoaka
 
 signal voadaka(val)
@@ -15,6 +15,8 @@ func voadaka(joueur):
 	emit_signal("voadaka")
 	
 func animate_voadaka():
+	$object.mode = RigidBody2D.MODE_RIGID
+	$object.add_force(Vector2.ZERO,Vector2(0,-60))
 	$animation.play("tomber")
 
 func _on_cercle_body_entered(body):

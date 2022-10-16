@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Admin.gd" type="Script" id=1]
 [ext_resource path="res://scripts/GameTimer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Kapoaka.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/font/ARCADE.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 4 )
 
 [sub_resource type="Theme" id=2]
 
@@ -47,12 +51,14 @@ margin_left = -20.0
 margin_top = 20.0
 margin_right = 20.0
 margin_bottom = 34.0
+custom_fonts/font = SubResource( 6 )
 
 [node name="SeekerScore" type="Label" parent="HUD"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 60.0
 margin_bottom = 34.0
+custom_fonts/font = SubResource( 6 )
 
 [node name="HiddenScore" type="Label" parent="HUD"]
 anchor_left = 1.0
@@ -62,6 +68,7 @@ margin_top = 20.0
 margin_right = -20.0
 margin_bottom = 34.0
 grow_horizontal = 0
+custom_fonts/font = SubResource( 6 )
 align = 2
 
 [node name="VictoryPanel" type="Panel" parent="HUD"]
@@ -121,6 +128,6 @@ curve = SubResource( 5 )
 
 [node name="SpawnFollow" type="PathFollow2D" parent="SpawnPath"]
 position = Vector2( 512, 274 )
-rotation = 0.110419
+rotation = 0.110435
 
 [connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]

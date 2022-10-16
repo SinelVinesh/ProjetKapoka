@@ -8,6 +8,7 @@ var init_distance
 var camera_lock = false
 var started = false
 var kapoaka
+var delay_freeze
 var players = []
 
 onready var seeker_scene = preload("res://scenes/Seeker.tscn")
@@ -137,10 +138,13 @@ func _on_seeker_touched():
 # called when the timer is out
 func _on_count_down_ends():
 	win_round("hider")
+	rpc("win_round","hider")
 	
 remotesync func win_round(group: String):
 	if(group == "hider") :
 		$Kapoaka.animate_voadaka()
+		$Kapoaka.get_node("animation").connect("animation_finished",self,"freeze_game")
+		delay_freeze = true
 	score[group] = score[group] + 1
 	win_game(group)
 
@@ -149,10 +153,14 @@ func reset_game():
 	
 remotesync func win_game(group: String):
 	if group == "seeker" :
-		$HUD/VictoryPanel/VictoryText.text = "Victoire du boka"
+		$HUD/VictoryPanel/VictoryText.text = "Victoire du Seeker"
 	else :
-		$HUD/VictoryPanel/VictoryText.text = "Victoire des caches"
+		$HUD/VictoryPanel/VictoryText.text = "Victoire des Hiders"
 	$HUD/VictoryPanel.show()
+	if !delay_freeze:
+		freeze_game("")
+
+remotesync func freeze_game(anim_name):
 	get_tree().paused = true
 
 func add_player(id) :

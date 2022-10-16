@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Hider.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "Kapoaka",
 "language": "GDScript",
 "path": "res://scripts/Kapoaka.gd"
