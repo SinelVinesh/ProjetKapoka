@@ -8,7 +8,9 @@ signal exited_cercle(joueur)
 
 func _ready():
 	pass
-
+func init_position(position) :
+	self.position = position
+	
 func voadaka(joueur):
 	emit_signal("voadaka")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Kapoaka.gd" type="Script" id=1]
 [ext_resource path="res://assets/dotpict/canette.png" type="Texture" id=2]
@@ -41,11 +41,6 @@ tracks/0/keys = {
 "values": [ 0, 2, 3, 4 ]
 }
 
-[sub_resource type="Curve2D" id=5]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1, -88, -0.279732, -88.1097, 0.279732, 88.1097, 87, 0, -0.659921, 0.66742, 0.659921, -0.66742, -1, 88, 0.264866, 88.2623, -0.264866, -88.2623, -89, 0, 0, 0, 0, 0, -1, -88 )
-}
-
 [node name="kapoaka" type="Area2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 1 )
@@ -77,15 +72,6 @@ shape = SubResource( 1 )
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/tomber = SubResource( 3 )
-
-[node name="SpawnPath" type="Path2D" parent="."]
-position = Vector2( 0.500001, -0.00605774 )
-scale = Vector2( 0.3, 0.3 )
-curve = SubResource( 5 )
-
-[node name="SpawnFollow" type="PathFollow2D" parent="SpawnPath"]
-position = Vector2( -1, -88 )
-rotation = 0.047835
 
 [connection signal="body_entered" from="cercle" to="." method="_on_cercle_body_entered"]
 [connection signal="body_exited" from="cercle" to="." method="_on_cercle_body_exited"]

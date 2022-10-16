@@ -30,9 +30,9 @@ anti_aliasing_size = 1.398
 size = 48
 font_data = ExtResource( 4 )
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=5]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 576, 192, 0, -68.974, 0, 68.974, 640, 256, 0, 0, 0, 0, 576, 320, 0, 60.6496, 0, -60.6496, 512, 256, 0, 0, 0, 0, 576, 192 )
+"points": PoolVector2Array( 0, 0, 0, 0, 512, 274, -1.18921, -25.5679, 1.18921, 25.5679, 540, 300, 0, 0, 0, 0, 513, 327, 1.48651, 24.0814, -1.48651, -24.0814, 486, 301, 0, 0, 0, 0, 512, 274 )
 }
 
 [node name="Admin" type="Node2D"]
@@ -92,6 +92,7 @@ align = 1
 valign = 1
 
 [node name="Kapoaka" parent="." instance=ExtResource( 3 )]
+position = Vector2( 513, 300 )
 
 [node name="Seekers" type="Node2D" parent="."]
 
@@ -102,19 +103,6 @@ script = ExtResource( 2 )
 
 [node name="SeekerGuessTimer" type="Timer" parent="."]
 wait_time = 10.0
-
-[node name="Path2D" type="Path2D" parent="."]
-visible = false
-position = Vector2( -32, 76.1579 )
-scale = Vector2( 0.9375, 0.874538 )
-curve = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 576, 192 )
-rotation = -0.0144416
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2( 516, 300 )
@@ -127,5 +115,12 @@ position = Vector2( 512, 300 )
 __meta__ = {
 "_gizmo_extents_": 26.8
 }
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource( 5 )
+
+[node name="SpawnFollow" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2( 512, 274 )
+rotation = 0.110419
 
 [connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]

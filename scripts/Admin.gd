@@ -45,19 +45,21 @@ func spawnSeeker(id):
 	init_distance = seeker.position.distance_to($KapokaSpawn.position)
 	
 func spawnHider(id):
-	var follow = kapoaka.get_node("SpawnPath/SpawnFollow")
+	var follow = $SpawnPath/SpawnFollow
 	follow.unit_offset = randf()
 	var hidden = hider_scene.instance()
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)
 	hidden.set_index_play(len(hidden_list))
+	hidden.add_to_group("hider")
+	print($Kapoaka.position)
 	hidden.position = follow.position
 	$Hidden.add_child(hidden)
 	hidden.connect("kapoka_hit",self,"_on_kapoaka_hit")
 	
 func spawnKapoka():
-	$Kapoaka.set_position($KapokaSpawn.position)
+	$Kapoaka.init_position($KapokaSpawn.position)
 
 func _process(delta):
 	handleCamera(delta)
