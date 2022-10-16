@@ -107,16 +107,16 @@ func _on_kapoaka_shaken(ids):
 	# give the seeker an amount of time to choose the correct pseudo
 	# the time is bound to the seeker, he will get a malus if the timer times out
 	# $SeekerGuessTimer.start()
-	for seeker in $Hidden.get_children():
-		if int(seeker.name) in ids:
-			rpc("eliminate",seeker.name)
-	if len($Hidden.get_children()) :
-		rpc("win_round","seeker")
+	rpc("eliminate",ids)
+	
+	
 	
 remotesync func eliminate(id) :
 	for hidder in $Hidden.get_children():
-		if hidder.name() in id:
+		if hidder.name in id:
 			hidder.queue_free()
+	if len($Hidden.get_children()) ==1 :
+		rpc("win_round","seeker")
 
 func toogle_player_process(state: bool):
 	for seeker in $Seekers.get_children():
