@@ -99,10 +99,10 @@ func _on_kapoaka_exited(node):
 func _on_kapoaka_hit(name):
 	win_round("hider")
 	for seeker in $Seekers.get_children() :
-		if seeker.name != get_network_master() :
+		if seeker.name != str(get_network_master()) :
 			rpc_id(seeker.name,"win_round",name)
 	for hider in $Hidden.get_children() :
-		if hider.name != get_network_master() :
+		if hider.name != str(get_network_master()) :
 			rpc_id(hider.name,"win_round",name)
 	
 # called when a seeker touch the kapoka to guess a found player
