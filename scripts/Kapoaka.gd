@@ -16,7 +16,8 @@ func voadaka(joueur):
 	
 func animate_voadaka():
 	$object.mode = RigidBody2D.MODE_RIGID
-	$object.add_force(Vector2.ZERO,Vector2(0,-60))
+	$object.add_force(Vector2.ZERO,Vector2(0,-20))
+	$VodakaSound.play()
 	$animation.play("tomber")
 
 func _on_cercle_body_entered(body):

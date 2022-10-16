@@ -20,9 +20,7 @@ func _ready():
 	$Kapoaka.connect("entered_cercle",self,"_on_kapoaka_reached")
 	$Kapoaka.connect("exited_cercle",self,"_on_kapoaka_exited")
 	randomize()
-	update_score()
 	spawnKapoka()
-	
 
 func update_score():
 	$HUD/SeekerScore.text = "Team Seeker : "+str(score.get("seeker"))
@@ -157,11 +155,22 @@ remotesync func win_game(group: String):
 	else :
 		$HUD/VictoryPanel/VictoryText.text = "Victoire des Hiders"
 	$HUD/VictoryPanel.show()
+	$GameSong.fade_out()
+	$VictorySound.play()
 	if !delay_freeze:
 		freeze_game("")
 
 remotesync func freeze_game(anim_name):
-	get_tree().paused = true
+	for seeker in $Seekers.get_children():
+		seeker.set_physics_process(false)
+		seeker.set_process(false)
+	for hider in $Hidden.get_children():
+		hider.set_physics_process(false)
+		hider.set_process(false)
 
 func add_player(id) :
 	players.append(id)
+	
+func loadGameSound():
+	$MenuTheme.fade_out()
+	$GameSong.fade_in()

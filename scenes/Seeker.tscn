@@ -1,14 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/dotpict/Perso2_2.PNG" type="Texture" id=1]
 [ext_resource path="res://scripts/Seeker.gd" type="Script" id=2]
 [ext_resource path="res://scripts/ChampVision.gd" type="Script" id=3]
+[ext_resource path="res://assets/sound/Found.wav" type="AudioStream" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10, 15 )
+[sub_resource type="CapsuleShape2D" id=21]
+radius = 9.5
+height = 0.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 75.5, 62.5 )
+extents = Vector2( 170, 95 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -118,14 +120,17 @@ position = Vector2( 1, -1 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.5, 0.5 )
-shape = SubResource( 2 )
+position = Vector2( -1.5, 6.5 )
+shape = SubResource( 21 )
 
 [node name="ChampVision" type="Area2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="Zone" type="CollisionShape2D" parent="ChampVision"]
 shape = SubResource( 3 )
+
+[node name="FoundPlayer" type="AudioStreamPlayer2D" parent="ChampVision"]
+stream = ExtResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.30096, 1.28573 )
@@ -138,6 +143,9 @@ animation = "down"
 [node name="Network_tick_rate" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+bus = "Environement"
 
 [connection signal="body_entered" from="ChampVision" to="ChampVision" method="_on_ChampVision_body_entered"]
 [connection signal="timeout" from="Network_tick_rate" to="." method="_on_Network_tick_rate_timeout"]

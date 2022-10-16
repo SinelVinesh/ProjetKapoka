@@ -208,6 +208,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
+radius = 8.0
+height = 0.0
 
 [node name="Hider" type="KinematicBody2D" groups=["Hider"]]
 position = Vector2( 1, 2 )
@@ -223,6 +225,7 @@ frames = SubResource( 1 )
 animation = "down_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6 )
 shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
@@ -233,5 +236,8 @@ autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2( 0.3, 0.3 )
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+bus = "Environement"
 
 [connection signal="timeout" from="Network_tick_rate" to="." method="_on_Network_tick_rate_timeout"]

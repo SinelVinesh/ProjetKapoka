@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Admin.gd" type="Script" id=1]
 [ext_resource path="res://scripts/GameTimer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Kapoaka.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/font/ARCADE.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/sound/Juhani Junkala [Chiptune Adventures] 4. Stage Select.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/Juhani Junkala [Chiptune Adventures] 2. Stage2.wav" type="AudioStream" id=7]
+[ext_resource path="res://scripts/SoundManager.gd" type="Script" id=8]
+[ext_resource path="res://assets/sound/win.mp3" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
@@ -33,6 +38,9 @@ anti_aliasing_size = 1.398
 [sub_resource type="DynamicFont" id=4]
 size = 48
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 0.247059 )
 
 [sub_resource type="Curve2D" id=5]
 _data = {
@@ -98,6 +106,43 @@ text = "Victoire du boka"
 align = 1
 valign = 1
 
+[node name="Panel" type="Panel" parent="HUD"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel"]
+anchor_right = 1.0
+margin_left = 3.0
+margin_top = 120.0
+margin_right = 3.0
+margin_bottom = 218.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Panel/HBoxContainer"]
+margin_left = 480.0
+margin_right = 544.0
+margin_bottom = 98.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 304.0
+margin_top = -410.0
+margin_right = -304.0
+margin_bottom = -259.0
+alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="HUD/Panel/VBoxContainer"]
+margin_top = 65.0
+margin_right = 416.0
+margin_bottom = 85.0
+text = "Joueur 1"
+
 [node name="Kapoaka" parent="." instance=ExtResource( 3 )]
 position = Vector2( 513, 300 )
 
@@ -129,5 +174,23 @@ curve = SubResource( 5 )
 [node name="SpawnFollow" type="PathFollow2D" parent="SpawnPath"]
 position = Vector2( 512, 274 )
 rotation = 0.110435
+
+[node name="MenuTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Song"
+script = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="MenuTheme"]
+
+[node name="GameSong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "Song"
+script = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="GameSong"]
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
 
 [connection signal="count_down" from="GameTimer" to="." method="_on_GameTimer_count_down"]

@@ -61,7 +61,9 @@ func _connected_to_server():
 	
 func instance_seeker(id):
 	Admin.spawnSeeker(id)
+	Admin.loadGameSound()
 	
 func instance_hider(id):
 	Admin.spawnHider(id)
+	Admin.loadGameSound()
 

@@ -14,4 +14,5 @@ func _on_ChampVision_body_entered(body):
 	if body.is_in_group("Hider"):
 		if !idTab.has(body.name):
 			idTab.append(body.name)
+			$FoundPlayer.play()
 	

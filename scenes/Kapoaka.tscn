@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Kapoaka.gd" type="Script" id=1]
 [ext_resource path="res://assets/dotpict/canette.png" type="Texture" id=2]
 [ext_resource path="res://assets/dotpict/cercle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sound/kapoka_voadaka.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.5, 7.5 )
@@ -76,6 +77,9 @@ texture = ExtResource( 3 )
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/tomber = SubResource( 3 )
+
+[node name="VodakaSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="child_entered_tree" from="object/collision_self" to="." method="_on_collision_self_child_entered_tree"]
 [connection signal="body_entered" from="cercle" to="." method="_on_cercle_body_entered"]
