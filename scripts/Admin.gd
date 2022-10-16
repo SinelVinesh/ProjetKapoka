@@ -50,6 +50,7 @@ func spawnHider(id):
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)
+	hidden.set_index_play(len(hidden_list))
 	hidden.position = $Path2D/PathFollow2D.position
 	$Hidden.add_child(hidden)
 	hidden.set_process(false)
