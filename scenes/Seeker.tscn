@@ -8,7 +8,7 @@
 extents = Vector2( 10, 15 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 170, 95 )
+extents = Vector2( 75.5, 62.5 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
