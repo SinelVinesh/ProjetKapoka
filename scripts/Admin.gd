@@ -51,6 +51,7 @@ func spawnHider(id):
 	hidden.name = str(id)
 	hidden.set_network_master(id)
 	hidden_list.append(hidden)
+	hidden.set_index_play(len(hidden_list))
 	hidden.position = follow.position
 	$Hidden.add_child(hidden)
 	hidden.connect("kapoka_hit",self,"_on_kapoaka_hit")

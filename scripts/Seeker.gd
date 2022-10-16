@@ -24,16 +24,16 @@ func kasyKpoka():
 			emit_signal("idTab",$ChampVision.getIdTab())
 			print($ChampVision.getIdTab())
 		
-func play_correct_animation() :
-	
-	if Input.is_action_pressed("move_down"):
-		$Sprite.play("down")
-	elif Input.is_action_pressed("move_left"):
-		$Sprite.play("left")
-	elif Input.is_action_pressed("move_right"):
-		$Sprite.play("right")
-	elif Input.is_action_pressed("move_up"):
-		$Sprite.play("up")
+func play_correct_animation():
+	if is_network_master():
+		if Input.is_action_pressed("move_down"):
+			$Sprite.play("down")
+		elif Input.is_action_pressed("move_left"):
+			$Sprite.play("left")
+		elif Input.is_action_pressed("move_right"):
+			$Sprite.play("right")
+		elif Input.is_action_pressed("move_up"):
+			$Sprite.play("up")
 
 
 
