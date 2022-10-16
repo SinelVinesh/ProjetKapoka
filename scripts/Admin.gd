@@ -25,7 +25,7 @@ func _ready():
 
 func update_score():
 	$HUD/SeekerScore.text = "Team Seeker : "+str(score.get("seeker"))
-	$HUD/HiddenScore.text = "Team Hidden : "+str(score.get("hidden"))
+	$HUD/HiddenScore.text = "Team Hidden : "+str(score.get("hider"))
 
 func _on_GameTimer_count_down(count):
 	var minutes = count/60
