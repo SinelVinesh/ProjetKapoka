@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/Terrain/tambo2.png" type="Texture" id=1]
+[ext_resource path="res://assets/Terrain/New Piskel.png" type="Texture" id=2]
+[ext_resource path="res://assets/Terrain/seza.png" type="Texture" id=3]
+[ext_resource path="res://assets/Terrain/tambo3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Terrain/buisson.png" type="Texture" id=5]
+[ext_resource path="res://assets/Terrain/New Piskel (3).png" type="Texture" id=6]
+[ext_resource path="res://assets/Terrain/hazo.png" type="Texture" id=7]
+[ext_resource path="res://assets/Terrain/tambo.png" type="Texture" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 155.851
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 80.0
+height = 300.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 275, 308.334 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 350, 195 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 390.001, 130 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 120, 450 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 1530, 230 )
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 11.0963
+height = 26.0
+
+[node name="Component" type="Node"]
+
+[node name="buisson" type="Sprite" parent="."]
+position = Vector2( 230, -67 )
+scale = Vector2( 0.0970703, 0.0986979 )
+texture = ExtResource( 5 )
+centered = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="buisson"]
+position = Vector2( 1514.37, 2401.27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buisson/StaticBody2D"]
+position = Vector2( -0.000488281, 81.0554 )
+shape = SubResource( 1 )
+
+[node name="hazo" type="Sprite" parent="."]
+position = Vector2( 56, 184 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="hazo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hazo/StaticBody2D"]
+position = Vector2( -39.9999, -220 )
+shape = SubResource( 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 288, 175 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+position = Vector2( -20, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+position = Vector2( 11.6665, -18.3337 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="seza" type="Sprite" parent="."]
+position = Vector2( 168, 179 )
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="seza"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="seza/StaticBody2D"]
+position = Vector2( -183.332, -204.999 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 4 )
+
+[node name="tambo2" type="Sprite" parent="."]
+position = Vector2( 471, 183 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="tambo2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tambo2/StaticBody2D"]
+position = Vector2( -49.998, -90 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 5 )
+
+[node name="tambo3" type="Sprite" parent="."]
+position = Vector2( 552, 196 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="tambo3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tambo3/StaticBody2D"]
+position = Vector2( -59.9995, -510 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 6 )
+
+[node name="tambo" type="Sprite" parent="."]
+position = Vector2( 682, 241 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="tambo"]
+position = Vector2( 20, -1280 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tambo/StaticBody2D"]
+position = Vector2( -9.99994, -30.0001 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 7 )
+
+[node name="poubelle" type="Sprite" parent="."]
+position = Vector2( 857, 182 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 5
+vframes = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="poubelle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="poubelle/StaticBody2D"]
+position = Vector2( 4, -3 )
+rotation = 0.98262
+shape = SubResource( 8 )
