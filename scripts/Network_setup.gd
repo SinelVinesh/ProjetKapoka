@@ -22,6 +22,7 @@ func _ready():
 func _player_connected(id):
 	print(str(id) + " connected")
 	rpc_id(id,"instance_puppet",my_group)
+	Admin.add_player(id)
 
 func instance_puppet(group):
 	if group == "seeker":

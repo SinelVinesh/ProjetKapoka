@@ -7,7 +7,8 @@ const seeker_spawn = Vector2(30,250)
 var init_distance
 var camera_lock = false
 var started = false
-var kapoaka;
+var kapoaka
+var players = []
 
 onready var seeker_scene = preload("res://scenes/Seeker.tscn")
 onready var hider_scene = preload("res://scenes/Hider.tscn")
@@ -151,3 +152,6 @@ func win_game(group: String):
 		$HUD/VictoryPanel/VictoryText.text = "Victoire des caches"
 	$HUD/VictoryPanel.show()
 	get_tree().paused = true
+
+func add_player(id) :
+	players.append(id)
