@@ -1,6 +1,6 @@
 extends Node2D
 
-export var score := {"seeker":0,"hidden":0}
+export var score := {"seeker":0,"hider":0}
 var seeker_list = []
 var hidden_list = []
 const seeker_spawn = Vector2(30,250)
@@ -97,8 +97,10 @@ func _on_kapoaka_exited(node):
 
 # called when a hider hit the kapoka
 func _on_kapoaka_hit(name):
-	win_round("hidden")
-	$Kapoaka.animate_voadaka()
+	win_round("hider")
+	for id in players :
+		if id != get_network_master() :
+			rpc_id(id,"win_round",name)
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
@@ -136,9 +138,11 @@ func _on_seeker_touched():
 	
 # called when the timer is out
 func _on_count_down_ends():
-	win_round("hidden")
+	win_round("hider")
 	
-func win_round(group: String):
+remotesync func win_round(group: String):
+	if(group == "hider") :
+		$Kapoaka.animate_voadaka()
 	score[group] = score[group] + 1
 	win_game(group)
 
