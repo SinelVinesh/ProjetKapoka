@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sound/Found.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=21]
-radius = 9.5
+radius = 7.5
 height = 0.0
 
 [sub_resource type="RectangleShape2D" id=3]

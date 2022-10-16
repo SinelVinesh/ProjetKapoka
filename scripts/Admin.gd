@@ -42,6 +42,7 @@ func spawnSeeker(id):
 	$Seekers.add_child(seeker)
 	seeker.position = seeker_spawn
 	seeker.add_to_group("seeker")
+	seeker.connect("idTab",self,"_on_kapoaka_shaken")
 	init_distance = seeker.position.distance_to($KapokaSpawn.position)
 	
 func spawnHider(id):
@@ -100,12 +101,15 @@ func _on_kapoaka_hit(name):
 	rpc("win_round","hider")
 	
 # called when a seeker touch the kapoka to guess a found player
-func _on_kapoka_shaken():
+func _on_kapoaka_shaken(ids):
 	# freeze every mouvement
-	toogle_player_process(false)
+	# toogle_player_process(false)
 	# give the seeker an amount of time to choose the correct pseudo
 	# the time is bound to the seeker, he will get a malus if the timer times out
-	$SeekerGuessTimer.start()
+	# $SeekerGuessTimer.start()
+	for seeker in $Seekers.get_children():
+		if int(seeker.name) in ids:
+			seeker.queue_free()
 	
 func toogle_player_process(state: bool):
 	for seeker in $Seekers.get_children():
@@ -119,7 +123,6 @@ func _on_seeker_guess(true_ids,guess_ids):
 	for i in len(true_ids) :
 		if true_ids[i] != guess_ids[i] :
 			win_round("seeker")
-			pass
 	for hider in $Hidden.get_children():
 		if hider.getId() in true_ids :
 			put_in_jail(hider)

@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Hider.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "Kapoaka",
 "language": "GDScript",
 "path": "res://scripts/Kapoaka.gd"
@@ -52,8 +52,8 @@ config/icon="res://icon.png"
 
 Network="*res://scripts/Network.gd"
 Global="*res://scripts/Global.gd"
-Players="*res://scenes/Players.tscn"
 Admin="*res://scenes/Admin.tscn"
+Players="*res://scenes/Players.tscn"
 
 [display]
 
