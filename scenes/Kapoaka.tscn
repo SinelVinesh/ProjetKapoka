@@ -41,7 +41,7 @@ tracks/0/keys = {
 "values": [ 0, 2, 3, 4 ]
 }
 
-[node name="kapoaka" type="Area2D"]
+[node name="kapoaka" type="KinematicBody2D"]
 position = Vector2( 1, 0 )
 script = ExtResource( 1 )
 __meta__ = {

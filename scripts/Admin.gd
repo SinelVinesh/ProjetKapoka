@@ -95,9 +95,9 @@ func _on_kapoaka_exited(node):
 		node.set_hit(false)
 
 # called when a hider hit the kapoka
-func _on_kapoaka_hit():
+func _on_kapoaka_hit(name):
 	win_round("hidden")
-	$kapoaka.animate_voadaka()
+	$Kapoaka.animate_voadaka()
 	
 # called when a seeker touch the kapoka to guess a found player
 func _on_kapoka_shaken():
@@ -148,6 +148,6 @@ func win_game(group: String):
 	if group == "seeker" :
 		$HUD/VictoryPanel/VictoryText.text = "Victoire du boka"
 	else :
-		$HUD/VictoryPanel/VictoryText.text = "Victoire des cachés"
+		$HUD/VictoryPanel/VictoryText.text = "Victoire des caches"
 	$HUD/VictoryPanel.show()
 	get_tree().paused = true
