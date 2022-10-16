@@ -144,7 +144,7 @@ text = "Joueur 1"
 [node name="Terrain" parent="." instance=ExtResource( 10 )]
 
 [node name="Kapoaka" parent="." instance=ExtResource( 3 )]
-position = Vector2( 513, 300 )
+position = Vector2( 568, 267 )
 
 [node name="Seekers" type="Node2D" parent="."]
 
@@ -157,18 +157,19 @@ script = ExtResource( 2 )
 wait_time = 10.0
 
 [node name="GameCamera" type="Camera2D" parent="."]
-position = Vector2( 516, 300 )
+position = Vector2( 515, 301 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 7.0
 
 [node name="KapokaSpawn" type="Position2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 572, 268 )
 __meta__ = {
 "_gizmo_extents_": 26.8
 }
 
 [node name="SpawnPath" type="Path2D" parent="."]
+position = Vector2( 55, -33 )
 curve = SubResource( 5 )
 
 [node name="SpawnFollow" type="PathFollow2D" parent="SpawnPath"]

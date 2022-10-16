@@ -84,9 +84,9 @@ func _on_kapoaka_reached(node):
 	if(node.is_in_group("seeker") && !started) :
 		$GameTimer.start()
 		started = true
-	if(node.is_in_group("seeker")) :
+	if(node.is_in_group("seeker") && started) :
 		node.set_kasika(true)
-	if(node.is_in_group("hider")) :
+	if(node.is_in_group("hider") && started) :
 		node.set_hit(true)
 	
 func _on_kapoaka_exited(node):
